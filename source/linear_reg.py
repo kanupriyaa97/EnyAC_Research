@@ -5,7 +5,8 @@ from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 #HOW TO ADD ALL THESE LIBRARIES?????????????    
 
-disch_data = pd.read_csv('G_disch_20160728.csv')[9:12] #ROW 12 WHICH IS THE RESULTS IS ALSO A FUNCTION OF ITS PREVIOUS VALUES.
+#Assuming that dependant variable (disch row 12) is not dependant on its previous values.
+disch_data = pd.read_csv('G_disch_20160728.csv')[9:11] 
 gage_data = pd.read_csv('G_gage_20160728.csv')[9:12]
 
 disch_res = pd.read_csv('G_disch_20160728.csv')[11:12]
