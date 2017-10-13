@@ -13,8 +13,8 @@ def clean_dataset(df):
 
 
 #Assuming that dependant variable (disch row 12) is not dependant on its previous values.
-disch_data = pd.read_csv('G_disch_20160728.csv')[9:11] 
-gage_data = pd.read_csv('G_gage_20160728.csv')[9:12]
+disch_data = pd.read_csv('G_disch_20160728.csv')[8:11] 
+gage_data = pd.read_csv('G_gage_20160728.csv')[8:11]
 
 disch_res = pd.read_csv('G_disch_20160728.csv')[10:11]
 
@@ -56,12 +56,10 @@ print('Variance score: %.2f' % r2_score(res_test, res_pred))
 
 
 # Plot outputs
-print(data_test.shape)
-print(res_test.shape)
-plt.scatter(res_test, res_pred,  color='black')
-plt.plot(data_test, res_pred, color='blue', linewidth=1)
+#plt.scatter(data_train.ix[:,0:1], res_train,  color = "m", marker = "o", s = 30)
+#plt.plot(data_test, res_pred, color='blue', linewidth=1)
 
-plt.xticks(())
-plt.yticks(())
+#plt.xticks(())
+#plt.yticks(())
 
 plt.show()
