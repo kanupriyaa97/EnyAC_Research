@@ -13,23 +13,23 @@ def clean_dataset(df):
 
 
 #Assuming that dependant variable (disch row 12) is not dependant on its previous values.
-disch_data = pd.read_csv('G_disch_20160728.csv')[8:11] 
-gage_data = pd.read_csv('G_gage_20160728.csv')[8:11]
+disch_data = pd.read_csv('G_disch_20160728.csv')[8:8] 
+gage_data = pd.read_csv('G_gage_20160728.csv')[8:9]
 
 disch_res = pd.read_csv('G_disch_20160728.csv')[10:11]
 
 data = pd.concat([disch_data, gage_data]) 
 
 # Split the data into training/testing sets
-data_train = clean_dataset(data.ix[:,:-100].transpose())
-data_test = clean_dataset(data.ix[:,-100:-4].transpose())
+data_train = clean_dataset(data.ix[:,:-20].transpose())
+data_test = clean_dataset(data.ix[:,-20:-4].transpose())
 
 #print(data_train.ix[:5,:])
 #print(data_test)
 
 # Split the targets into training/testing sets
-res_train = clean_dataset(disch_res.ix[:, 3:-97].transpose())
-res_test = clean_dataset(disch_res.ix[:, -97:].transpose())
+res_train = clean_dataset(disch_res.ix[:, 3:-17].transpose())
+res_test = clean_dataset(disch_res.ix[:, -17:].transpose())
 
 #print(res_train)
 #print(res_test)
@@ -54,37 +54,12 @@ print("Mean squared error: %.2f"% mean_squared_error(res_test, res_pred))
 # Explained variance score: 1 is perfect prediction
 print('Variance score: %.2f' % r2_score(res_test, res_pred))
 
-print(data_test.values[:,0:1].shape)
+print(data_test.shape)
 print(res_test.shape)
 
 # Plot outputs
-plt.scatter(data_test.values[:,0:1], res_test,  color = "m", marker = "o", 
-    s = 2)
-plt.show()
-
-plt.scatter(data_test.values[:,1:2], res_test,  color = "m", marker = "o", 
-    s = 2)
-plt.show()
-
-plt.scatter(data_test.values[:,2:3], res_test,  color = "m", marker = "o", 
-    s = 2)
-plt.show()
-
-plt.scatter(data_test.values[:,3:4], res_test,  color = "m", marker = "o", 
-    s = 2)
-plt.show()
-
-plt.scatter(data_test.values[:,4:5], res_test,  color = "m", marker = "o", 
-    s = 2)
-plt.show()
-
-plt.scatter(data_test.values[:,5:6], res_test,  color = "m", marker = "o", 
-    s = 2)
-plt.show()
-
-plt.plot(data_test, res_test, color='blue', linewidth=0.5)
-plt.plot(data_test, res_pred, color='red', linewidth=0.5)
-plt.plot(res_pred, res_test, color='yellow', linewidth=0.5)
+plt.scatter(data_test, res_test,  color = "m", marker = "o", s = 30)
+plt.plot(data_test, res_pred, color='blue', linewidth=1)
 
 #plt.xticks(())
 #plt.yticks(())
